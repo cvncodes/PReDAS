@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a9c76cdbd1a4d24b2326e39dede1d47" Name="Diagram1">
+        <EntityTypeShape EntityType="BancoModel.AUDITORIA" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BancoModel.BANNER" Width="1.5" PointX="8.25" PointY="46.625" />
+        <EntityTypeShape EntityType="BancoModel.BLOG" Width="1.5" PointX="7.5" PointY="68" />
+        <EntityTypeShape EntityType="BancoModel.BLOG_CATEGORIA" Width="1.5" PointX="5.25" PointY="87.375" />
+        <EntityTypeShape EntityType="BancoModel.BLOG_IMAGEM" Width="1.5" PointX="9.75" PointY="56.625" />
+        <EntityTypeShape EntityType="BancoModel.CONFIG" Width="1.5" PointX="5.25" PointY="22.75" />
+        <EntityTypeShape EntityType="BancoModel.CONTATO" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BancoModel.COTACAO_GRAO" Width="1.5" PointX="5.25" PointY="76.75" />
+        <EntityTypeShape EntityType="BancoModel.COTACAO_GRAO_HISTORICO" Width="1.5" PointX="7.5" PointY="77.125" />
+        <EntityTypeShape EntityType="BancoModel.DUVIDAS_FREQUENTES" Width="1.5" PointX="5.25" PointY="36.125" />
+        <EntityTypeShape EntityType="BancoModel.ENVIO_EMAIL" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BancoModel.FAQ" Width="1.5" PointX="5.25" PointY="91.5" />
+        <EntityTypeShape EntityType="BancoModel.FORNECEDOR" Width="1.5" PointX="5.25" PointY="50.375" />
+        <EntityTypeShape EntityType="BancoModel.GALERIA" Width="1.5" PointX="7.5" PointY="57.75" />
+        <EntityTypeShape EntityType="BancoModel.GALERIA_CATEGORIA" Width="1.5" PointX="5.25" PointY="72.875" />
+        <EntityTypeShape EntityType="BancoModel.LINKS_UTEIS" Width="1.5" PointX="5.25" PointY="58.875" />
+        <EntityTypeShape EntityType="BancoModel.LOG" Width="1.5" PointX="5.25" PointY="27.25" />
+        <EntityTypeShape EntityType="BancoModel.MODULO" Width="1.5" PointX="3.75" PointY="55.875" />
+        <EntityTypeShape EntityType="BancoModel.MONITORAMENTO" Width="1.5" PointX="7.5" PointY="36.125" />
+        <EntityTypeShape EntityType="BancoModel.PAGINA" Width="1.5" PointX="6" PointY="55.125" />
+        <EntityTypeShape EntityType="BancoModel.PERMISSAO" Width="1.5" PointX="0.75" PointY="45.125" />
+        <EntityTypeShape EntityType="BancoModel.POPUP" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BancoModel.PRODUTOS" Width="1.5" PointX="7.5" PointY="62.75" />
+        <EntityTypeShape EntityType="BancoModel.PRODUTOS_CATEGORIA" Width="1.5" PointX="5.25" PointY="80.25" />
+        <EntityTypeShape EntityType="BancoModel.ROOM" Width="1.5" PointX="5.25" PointY="30.75" />
+        <EntityTypeShape EntityType="BancoModel.ROOM_TIME" Width="1.5" PointX="7.5" PointY="39.625" />
+        <EntityTypeShape EntityType="BancoModel.SEARCH_RESULT" Width="1.5" PointX="10.5" PointY="39.625" />
+        <EntityTypeShape EntityType="BancoModel.SENSOR" Width="1.5" PointX="5.25" PointY="40" />
+        <EntityTypeShape EntityType="BancoModel.USUARIO" Width="1.5" PointX="3" PointY="43.5" />
+        <EntityTypeShape EntityType="BancoModel.USUARIO_LOG" Width="1.5" PointX="5.25" PointY="84.625" />
+        <EntityTypeShape EntityType="BancoModel.USUARIO_MODULO" Width="1.5" PointX="6" PointY="44.875" />
+        <AssociationConnector Association="BancoModel.BANNER_ibfk_1" />
+        <AssociationConnector Association="BancoModel.BANNER_ibfk_2" />
+        <AssociationConnector Association="BancoModel.FK_BANNER_PAGINA" />
+        <AssociationConnector Association="BancoModel.FK_BLOG_IMAGEM_BLOG" />
+        <AssociationConnector Association="BancoModel.FK_BLOG_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_BLOG_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.FK3_BLOG_CATEGORIA" />
+        <AssociationConnector Association="BancoModel.BLOG_CATEGORIA_ibfk_1" />
+        <AssociationConnector Association="BancoModel.BLOG_CATEGORIA_ibfk_2" />
+        <AssociationConnector Association="BancoModel.FK_BLOG_IMAGEM_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK1_CONFIG_USERINC" />
+        <AssociationConnector Association="BancoModel.FK2_CONFIG_USERALT" />
+        <AssociationConnector Association="BancoModel.FK_COTACAO_GRAO_ID" />
+        <AssociationConnector Association="BancoModel.FK_USUARIO_GRAOS_ID" />
+        <AssociationConnector Association="BancoModel.FK1_DUVIDAS_FREQUENTES_USERINC" />
+        <AssociationConnector Association="BancoModel.FK2_DUVIDAS_FREQUENTES_USERALT" />
+        <AssociationConnector Association="BancoModel.FAQ_ibfk_1" />
+        <AssociationConnector Association="BancoModel.FAQ_ibfk_2" />
+        <AssociationConnector Association="BancoModel.FK1_FORNECDEDOR_USERINC" />
+        <AssociationConnector Association="BancoModel.FK2_FORNECEDOR_USERALT" />
+        <AssociationConnector Association="BancoModel.FK_GALERIA_GALERIA_CATEGORIA" />
+        <AssociationConnector Association="BancoModel.GALERIA_ibfk_1" />
+        <AssociationConnector Association="BancoModel.GALERIA_ibfk_2" />
+        <AssociationConnector Association="BancoModel.GALERIA_CATEGORIA_ibfk_1" />
+        <AssociationConnector Association="BancoModel.GALERIA_CATEGORIA_ibfk_2" />
+        <AssociationConnector Association="BancoModel.LINKS_UTEIS_ibfk_1" />
+        <AssociationConnector Association="BancoModel.LINKS_UTEIS_ibfk_2" />
+        <AssociationConnector Association="BancoModel.FK_LOG_USUARIO" />
+        <AssociationConnector Association="BancoModel.fk_USUARIO_MODULO_MODULO1" />
+        <AssociationConnector Association="BancoModel.FK_MONITORAMENTO_ROOM" />
+        <AssociationConnector Association="BancoModel.FK_MONITORAMENTO_SENSOR" />
+        <AssociationConnector Association="BancoModel.fk_USUARIO_MODULO_PERMISSAO1" />
+        <AssociationConnector Association="BancoModel.fk_USUARIO_PERMISSAO1" />
+        <AssociationConnector Association="BancoModel.FK_PRODUTOS_PRODUTOS_CATEGORIA" />
+        <AssociationConnector Association="BancoModel.FK_PRODUTOS_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_PRODUTOS_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.PRODUTOS_CATEGORIA_ibfk_1" />
+        <AssociationConnector Association="BancoModel.PRODUTOS_CATEGORIA_ibfk_2" />
+        <AssociationConnector Association="BancoModel.FK__ROOM" />
+        <AssociationConnector Association="BancoModel.FK_ROOM_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_ROOM_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.FK_SEARCH_RESULT_ROOM" />
+        <AssociationConnector Association="BancoModel.FK_ROOM_TIME_SENSOR" />
+        <AssociationConnector Association="BancoModel.FK_ROOM_TIME_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_ROOM_TIME_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.FK_SEARCH_RESULT_SENSOR" />
+        <AssociationConnector Association="BancoModel.FK_SEARCH_RESULT_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_SEARCH_RESULT_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.FK_SENSOR_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_SENSOR_USUARIO_2" />
+        <AssociationConnector Association="BancoModel.fk_USUARIO_LOG_USUARIO" />
+        <AssociationConnector Association="BancoModel.FK_USUARIO_USUARIO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

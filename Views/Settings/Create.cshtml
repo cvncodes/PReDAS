@@ -1,0 +1,57 @@
+﻿@model Yourcode.CMS.Models.CONFIG
+
+@{
+    ViewBag.Title = "Cadastar Depoimento | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Settings
+            <small>Create Configuração</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    @using (Html.BeginForm("create", "settings", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.CHAVE, "Key *")
+                                    @Html.TextBoxFor(model => model.CHAVE, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.CHAVE)
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.VALOR, "Value *")
+                                    @Html.TextBoxFor(model => model.VALOR, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.VALOR)
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.OBS, "Observation")
+                                    @Html.TextBoxFor(model => model.OBS, new { @class = "form-control"})
+                                    @Html.ValidationMessageFor(model => model.OBS)
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" id="btnSalvar" class="btn btn-flat btn-primary">Salvar</button>
+                            <button type="button" id="btnCancelar" name="btnCancelar" class="btn btn-flat btn-default" onclick="history.go(-1)">Cancelar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

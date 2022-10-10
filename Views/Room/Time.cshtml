@@ -1,0 +1,149 @@
+﻿@using Yourcode.CMS.Models
+@using Yourcode.CMS.Models.Enum
+@model ROOM_TIME
+
+@{
+    ViewBag.Title = "Cadastar Serviço | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Rooms
+            <small>Create Room</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    @using (Html.BeginForm("time", "room", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.ID)
+
+                        <input type="hidden" name="ROOM_ID" value="@ViewBag.RoomId" />
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-2 col-xs-12">
+                                    @Html.LabelFor(model => model.SEMANA, "Time Sensitive Data Start *")
+                                    @Html.DropDownListFor(model => model.SEMANA, (List<SelectListItem>)ViewBag.ListaSemana, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.SEMANA)
+                                </div>
+                                <div class="col-md-2 col-xs-12">
+                                    @Html.LabelFor(model => model.SENSOR_ID, "Sensor *")
+                                    @Html.DropDownListFor(model => model.SENSOR_ID, (List<SelectListItem>)ViewBag.ListSensor, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.SENSOR_ID)
+                                </div>
+                            </div>
+                            <div class="row">
+                                @*<div class="col-md-2 col-xs-12">
+            @Html.LabelFor(model => model.DATA_INI, "Date Start")
+            @Html.TextBoxFor(model => model.DATA_INI, new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.DATA_INI)
+        </div>*@
+                                <div class="col-md-2 col-xs-12">
+                                    @Html.LabelFor(model => model.HORA_INI, "Time Start *")
+                                    @Html.TextBoxFor(model => model.HORA_INI, new { @class = "form-control", @type = "time", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.HORA_INI)
+                                </div>
+                                <div class="col-md-2 col-xs-12">
+                                    @Html.LabelFor(model => model.HORA_FIM, "Time End *")
+                                    @Html.TextBoxFor(model => model.HORA_FIM, new { @class = "form-control", @type = "time", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.HORA_FIM)
+                                </div>
+                            </div>
+                            <div class="row">
+                                @*<div class="col-md-2 col-xs-12">
+                                    @Html.LabelFor(model => model.DATA_FIM, "Date End")
+                                    @Html.TextBoxFor(model => model.DATA_FIM, new { @class = "form-control", @type = "date" })
+                                    @Html.ValidationMessageFor(model => model.DATA_FIM)
+                                </div>*@
+                                
+                            </div>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" id="btnSalvar" class="btn btn-flat btn-primary">Save</button>
+                            <button type="button" id="btnCancelar" name="btnCancelar" class="btn btn-flat btn-default" onclick="history.go(-1)">Cancel</button>
+                        </div>
+                    }
+
+                    @if (ViewBag.ListaTimes != null && ((List<ROOM_TIME>)ViewBag.ListaTimes).Count > 0)
+                    {
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Room</th>
+                                        <th>Sensor</th>
+                                        <th>Weeking</th>
+                                        <th>Time Start</th>
+                                        <th>Time End</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in (List<ROOM_TIME>)ViewBag.ListaTimes)
+                                    {
+                                        string semana = string.Empty;
+                                        switch (item.SEMANA)
+                                        {
+                                            case 1:
+                                                semana = "Sunday";
+                                                break;
+                                            case 2:
+                                                semana = "Monday";
+                                                break;
+                                            case 3:
+                                                semana = "Tuesday";
+                                                break;
+                                            case 4:
+                                                semana = "Wednesday";
+                                                break;
+                                            case 5:
+                                                semana = "Thursday";
+                                                break;
+                                            case 6:
+                                                semana = "Friday";
+                                                break;
+                                            case 7:
+                                                semana = "Saturday";
+                                                break;
+                                        }
+
+                                        <tr>
+                                            <td>@item.ROOM.TITULO</td>
+                                            <td>@item.SENSOR.TITULO</td>
+                                            <td>@semana</td>
+                                            <td>@item.HORA_INI</td>
+                                            <td>@item.HORA_FIM</td>
+                                            <td style="display: inline-flex;">
+                                                <a href="@Href("~/room/timedelete/" + item.ID)" onclick="return confirm('Do you really want to delete?');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>                
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //CKEDITOR.replace("DESCRICAO").on('required', function (evt) {
+        //    alert('O campo descrição é obrigatório!');
+        //    $("#btnSalvar").removeClass("m-progress");
+        //    evt.cancel();
+
+        //});
+    })
+</script>

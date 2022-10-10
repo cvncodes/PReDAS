@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Yourcode.CMS.Models.ROOM>
+
+@{
+    ViewBag.Title = "Serviços | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            Rooms
+            <small>Manager Rooms</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <a href="@Href("~/room/create")" class="btn bg-olive btn-flat">Create Room</a>
+                    </div>
+                    <div class="box-body">
+                        <table id="example" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="2%">#</th>
+                                    <th>Name</th>                                    
+                                    <th>Number</th>                                    
+                                    <th>Status</th>
+                                    <th>Creation Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    var cont = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@cont</td>
+                                            <td>@item.TITULO</td>
+                                            <td>@item.NUMERO</td>
+                                            <td>
+                                                @{
+                                                    switch (item.ATIVO)
+                                                    {
+                                                        case false:
+                                                            <span class="label label-danger">inactive</span>
+                                                            break;
+                                                        case true:
+                                                            <span class="label label-success">active</span>
+                                                            break;
+                                                    }
+                                                }
+                                            </td>
+                                            <td>@item.DATAINC.ToShortDateString()</td>
+                                            <td style="display: inline-flex;">
+                                                <a href="@Href("~/room/time/" + item.ID)" style="margin-right:5px" class="btn btn-flat btn-info btn-sm"><i class="fa fa-clock-o"></i> Sensitive Time</a>
+                                                <a href="@Href("~/room/edit/" + item.ID)" style="margin-right:5px" class="btn btn-flat btn-warning btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a href="@Href("~/room/delete/" + item.ID)" onclick="return confirm('Do you really want to delete?');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</a>
+                                            </td>
+                                        </tr>
+                                        cont++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $("#example").DataTable({
+            "bSort": false,
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Search:",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sPrevious": "Previous",
+                    "sNext": "Next",
+                    "sLast": "Last"
+                },
+            }
+        });
+    });
+</script>

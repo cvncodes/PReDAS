@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Yourcode.CMS.Models.SEARCH_RESULT>
+
+@{
+    ViewBag.Title = "Requests | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            Requests
+            <small>Manager Requests</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    @*<div class="box-body">
+                            <a href="@Href("~/room/create")" class="btn bg-olive btn-flat">Create Room</a>
+                        </div>*@
+                    <div class="box-body">
+                        <table id="example" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Room</th>
+                                    <th>Sensor</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Requested On</th>
+                                    <th>Purpose</th>
+                                    <th>Status</th>
+                                    <th>DPO</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.USUARIO.NOME</td>
+                                            <td>@item.ROOM.TITULO</td>
+                                            <td>@item.SENSOR.TITULO</td>
+                                            <td>@item.DATA_HORA_INI.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@item.DATA_HORA_FIM.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@item.DATAINC.ToShortDateString()</td>
+                                            <td>@item.MOTIVO</td>
+                                            <td>
+                                                @{
+                                                    if (item.LIBERA_ACESSO != null)
+                                                    {
+                                                        switch (item.LIBERA_ACESSO)
+                                                        {
+                                                            case false:
+                                                                <span class="label label-danger">denied</span>
+                                                                break;
+                                                            case true:
+                                                                <span class="label label-success">allowed</span>
+                                                                break;
+                                                            default:
+                                                                <span class="label label-default">--</span>
+                                                                break;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="label label-default">--</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td style="display: inline-flex;">
+                                                @if (item.LIBERA_ACESSO != null && item.LIBERA_ACESSO == true)
+                                                {
+                                                    <a href="@Href("~/myrequests/view/" + item.ID)" style="margin-right:5px" class="btn btn-flat btn-default btn-sm"><i class="fa fa-eye"></i> View</a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $("#example").DataTable({
+            "bSort": false,
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Search:",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sPrevious": "Previous",
+                    "sNext": "Next",
+                    "sLast": "Last"
+                },
+            }
+        });
+    });
+</script>

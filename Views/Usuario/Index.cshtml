@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Yourcode.CMS.Models.USUARIO>
+
+@{
+    ViewBag.Title = "Usuários | " + ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var user = ((Yourcode.CMS.Models.USUARIO)Session["USUARIO"]);
+    int permissao = 0;
+    permissao = user.PERMISSAO_ID;
+}
+
+
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            Users
+            <small>Manager Users</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <a href="@Href("~/usuario/create")" class="btn bg-olive btn-flat">Create User</a>
+                    </div>
+                    <div class="box-body">
+                        <table id="example" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Login</th>
+                                    <th>E-mail</th>
+                                    <th>Permission</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.NOME</td>
+                                            <td>@item.LOGIN</td>
+                                            <td>@item.EMAIL</td>
+                                            <td>@item.PERMISSAO.TIPO</td>
+
+                                            <td>
+                                                @if (item.ATIVO == true)
+                                                {
+                                                    <span class="label label-success">active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label label-danger">inactive</span>
+                                                }
+                                            </td>
+
+                                            <td style="display: inline-flex;">
+                                                @if (item.EMAIL.Contains("yourcode.com.br"))
+                                                {
+                                                    if (permissao == 10)
+                                                    {
+                                                        <a href="@Href("~/usuario/edit/" + item.ID)" class="btn btn-flat btn-warning btn-sm" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</a>
+                                                        if (item.SITUACAO == false)
+                                                        {
+                                                            <a href="@Href("~/usuario/ativar/" + item.ID)" onclick="return confirm('Deseja realmente Ativar esse Usuário?');" class="btn btn-flat btn-success btn-sm"><i class="fa fa-check"></i> active</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="@Href("~/usuario/desativar/" + item.ID)" onclick="return confirm('Deseja realmente Desativar esse Usuário?');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash-o"></i> inactive</a>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Href("~/usuario/edit/" + item.ID)" class="btn btn-flat btn-warning btn-sm" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</a>
+                                                    if (item.SITUACAO == false)
+                                                    {
+                                                        <a href="@Href("~/usuario/ativar/" + item.ID)" onclick="return confirm('Deseja realmente Ativar esse Usuário?');" class="btn btn-flat btn-success btn-sm"><i class="fa fa-check"></i> active</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Href("~/usuario/desativar/" + item.ID)" onclick="return confirm('Deseja realmente Desativar esse Usuário?');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash-o"></i> inactive</a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $("#example").DataTable({
+            "bSort": false,
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Search:",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sPrevious": "Previous",
+                    "sNext": "Next",
+                    "sLast": "Last"
+                },
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ('@ViewData["Mensagem"]' == "true") {
+            $.growl.notice({ title: "Sucesso!", message: "Alterações Salvas!" });
+        }
+        if ('@ViewData["Mensagem"]' == "false") {
+            //alert(bool)
+            $.growl.error({ title: "Erro!", message: "Algo deu errado!" });
+        }
+    });
+</script>

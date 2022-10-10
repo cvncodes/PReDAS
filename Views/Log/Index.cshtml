@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Yourcode.CMS.Models.LOG>
+
+@{
+    ViewBag.Title = "Logs | " + ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            Logs
+            <small>View Logs</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+
+                    <div class="box-body">
+                        <table id="example" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="2%">#</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                    <th>Message</th>
+                                    <th>Url</th>
+                                    <th>Machine</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    var cont = 1;
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@cont</td>
+                                            <td>@item.DATA</td>
+                                            <td>@item.ACAO</td>
+                                            <td>@item.MENSAGEM</td>
+                                            <td>@item.URL</td>
+                                            <td>@item.MAQUINA</td>
+                                        </tr>
+                                        cont++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $("#example").DataTable({
+            "bSort": false,
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Search:",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sPrevious": "Previous",
+                    "sNext": "Next",
+                    "sLast": "Last"
+                },
+            }
+        });
+    });
+</script>

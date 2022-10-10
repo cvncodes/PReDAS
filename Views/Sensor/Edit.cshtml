@@ -1,0 +1,118 @@
+﻿@model Yourcode.CMS.Models.SENSOR
+
+@{
+    ViewBag.Title = "Editar Serviço | " + ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Sensors
+            <small>Edit Sensor</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    @using (Html.BeginForm("edit", "sensor", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.DATAINC)
+                        @Html.HiddenFor(model => model.SITUACAO)
+                        @Html.HiddenFor(model => model.USERINC)
+
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.TITULO, "Name *")
+                                    @Html.TextBoxFor(model => model.TITULO, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.TITULO)
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.ATIVO, "Status *")
+                                    @Html.DropDownListFor(model => model.ATIVO, (SelectList)ViewBag.ListaAtivo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(o => o.ATIVO)
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    @Html.LabelFor(model => model.VALOR, "API Name *")
+                                    @Html.TextBoxFor(model => model.VALOR, new { @class = "form-control", @required = "required" })
+                                    @Html.ValidationMessageFor(model => model.VALOR)
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    @Html.LabelFor(model => model.DESCRICAO, "Description *")
+                                    @Html.TextAreaFor(model => model.DESCRICAO, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DESCRICAO)
+                                </div>
+                            </div>
+
+
+                            @*@if (Model.IMAGEM_PRINCIPAL != null)
+                                {
+                                    <div class="col-md-12 col-xs-12" style="padding-bottom: 15px;">
+                                        <br />
+                                        <label>Imagem principal</label>
+                                        <br />
+                                        <img src="@Href("/Content/upload/servicos/" + Model.IMAGEM_PRINCIPAL)" style="width: 200px;" />
+                                    </div>
+                                    <div class="col-md-12 col-xs-12">
+                                        <p><b>Para substituir a imagem, selecione aqui:</b></p>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <input type="file" id="arquivo" name="arquivo" class="form-control" accept="image/*" />
+                                    </div>
+                                    <div class="col-md-12 col-xs-12">
+                                        <br />
+                                        <p>Melhor Dimensão: 1200px X 800px</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12">
+                                            <label>Imagem Principal</label>
+                                            <input type="file" id="arquivo" name="arquivo" class="form-control" accept="image/*" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <br />
+                                        <p>Melhor Dimensão: 1200px X 800px</p>
+                                    </div>
+                                }*@
+
+
+
+
+
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" id="btnSalvar" class="btn btn-flat btn-primary">Save</button>
+                            <button type="button" id="btnCancelar" name="btnCancelar" class="btn btn-flat btn-default" onclick="history.go(-1)">Cancel</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        //CKEDITOR.replace("DESCRICAO").on('required', function (evt) {
+        //    alert('O campo descrição é obrigatório!');
+        //    $("#btnSalvar").removeClass("m-progress");
+        //    evt.cancel();
+        //});
+    })
+</script>

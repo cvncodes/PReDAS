@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Perfis de Acesso | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            Access Profiles
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <a href="@Href("~/perfis/create")" class="btn bg-olive btn-flat">New Profile</a>
+                    </div>
+                    <div class="box-body">
+                        <table id="example" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewData["ListaPerfis"] != null && ((List<Yourcode.CMS.Models.Dto.PerfisDto>)ViewData["ListaPerfis"]).Count() > 0)
+                                {
+                                    var contador = 1;
+                                    foreach (var item in (List<Yourcode.CMS.Models.Dto.PerfisDto>)ViewData["ListaPerfis"])
+                                    {
+                                        <tr>
+                                            <td>@contador</td>
+                                            <td>@item.Tipo</td>
+
+                                            <td style=" display: inline-flex;">
+                                                <a href="@Href("~/perfis/edit/" + item.Id)" class="btn btn-flat btn-warning btn-sm" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</a>
+                                                @if (item.Delete == true)
+                                                {
+                                                    <a href="@Href("~/perfis/delete/" + item.Id)" class="btn btn-flat btn-danger btn-sm" onclick="return confirm('Do you really want to delete?');"><i class="fa fa-trash-o"></i> Delete</a>
+                                                }
+                                            </td>
+                                        </tr>
+                                        contador++;
+                                    }
+                                }
+                            </tbody>
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+        $("#example").DataTable({
+            "bSort": false,
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "sSearch": "Search:",
+                "oPaginate": {
+                    "sFirst": "First",
+                    "sPrevious": "Previous",
+                    "sNext": "Next",
+                    "sLast": "Last"
+                },
+            }
+        });
+    });
+</script>

@@ -1,0 +1,74 @@
+﻿@using Yourcode.CMS.Models
+@using Yourcode.CMS.Models
+@using Yourcode.CMS.Models.Enum
+
+@{
+    ViewBag.Title = "Cadastar Serviço | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            My Requests
+            <small></small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+
+
+
+                    @if (ViewBag.Dados != null && ((List<MONITORAMENTO>)ViewBag.Dados).Count > 0)
+                    {
+                        <div class="box-body">
+
+                            <a href="@Url.Action("export", "search")" class="btn btn-default" target="_blank">Export</a>
+                            <br /><br />
+
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>Duration</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in (List<MONITORAMENTO>)ViewBag.Dados)
+                                    {
+                                        <tr>
+                                            <td>@item.DATA_HORA</td>
+                                            <td>@item.DURATION</td>
+                                            <td>@item.VALOR</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-body">
+                            <span>This query did not return any data.</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //CKEDITOR.replace("DESCRICAO").on('required', function (evt) {
+        //    alert('O campo descrição é obrigatório!');
+        //    $("#btnSalvar").removeClass("m-progress");
+        //    evt.cancel();
+
+        //});
+    })
+</script>

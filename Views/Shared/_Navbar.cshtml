@@ -1,0 +1,110 @@
+﻿@if (Session["USUARIO"] != null)
+{
+    foreach (var item in (List<Yourcode.CMS.Models.Dto.UsuarioModulo>)Session["USUARIO_MODULO"])
+    {
+        if (Convert.ToBoolean(item.Permitir))
+        {
+            <script>
+                $(document).ready(function () {
+                    $('.@item.ModuloId').removeClass("hidden");
+                });
+            </script>
+        }
+    }
+}
+else
+{
+    Url.Action("Index", "Home");
+}
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" id="menu">
+            <li class="header text-center">WEBSITE</li>
+
+            <li class="treeview">
+                <a href="@Href("~/dashboard")">
+                    <i class="fa fa-home"></i> <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulo-my-request">
+                <a href="@Href("~/myrequests")">
+                    <i class="fa fa-picture-o"></i> <span>My Requests</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulo-search-data">
+                <a href="@Href("~/search")">
+                    <i class="fa fa-picture-o"></i> <span>Search Data</span>
+                </a>
+            </li>
+
+
+            <li class="treeview hidden modulo-request">
+                <a href="@Href("~/requests")">
+                    <i class="fa fa-picture-o"></i> <span>Requests</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulobanner">
+                <a href="@Href("~/banner")">
+                    <i class="fa fa-picture-o"></i> <span>Banner</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden moduloblog">
+                <a href="@Href("~/blog")">
+                    <i class="fa fa-comments"></i> <span>Blog</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulofornecedor">
+                <a href="@Href("~/fornecedor")">
+                    <i class="fa fa-user-circle"></i> <span>Fornecedores</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulocontato">
+                <a href="@Href("~/contato")">
+                    <i class="fa fa-envelope-o"></i> <span>Contato</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden moduloproduto">
+                <a href="@Href("~/produto")">
+                    <i class="fa fa-shopping-cart"></i> <span>Produtos</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden moduloservicos">
+                <a href="@Href("~/servicos")">
+                    <i class="fa fa-list"></i> <span>Serviços</span>
+                </a>
+            </li>
+
+            <li class="treeview hidden modulo-duvida-frequente">
+                <a href="@Href("~/duvidafrequente")">
+                    <i class="fa fa-quote-right"></i> <span>Dúvidas Frequentes</span>
+                </a>
+            </li>
+
+            <li class="hidden modulosistema header text-center">SISTEMA</li>
+            <li class="hidden modulosistema treeview" id="menusistema">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>System</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="hidden modulousuario" id="usuariomenu"><a href="@Href("~/usuario")"><i class="fa fa-user-plus"></i> Manager Users</a></li>
+                    <li class="hidden moduloperfis" id="perfilmenu"><a href="@Href("~/perfis")"><i class="fa fa-gears"></i> Manager Access Profiles</a></li>
+                    <li class="hidden modulo-room" id="perfilmenu"><a href="@Href("~/room")"><i class="fa fa-building"></i> Manager Rooms</a></li>
+                    <li class="hidden modulo-sensor" id="perfilmenu"><a href="@Href("~/sensor")"><i class="fa fa-thermometer-empty"></i> Manager Sensors</a></li>
+                    <li class="hidden moduloconfig" id="moduloconfig"><a href="@Href("~/settings")"><i class="fa fa-cog"></i>Settings</a></li>
+                    <li class="hidden modulolog" id="modulolog"><a href="@Href("~/log")"><i class="fa fa-list"></i> Logs</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</aside>

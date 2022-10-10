@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Cadastrar Usuário | " + @ViewBag.Empresa;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Href("~/Content/admin/css/select2.min.css")" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Users
+            <small>Create User</small>
+        </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    @using (Html.BeginForm("Create", "Usuario", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <label>Name <span style="color: #ff0000;"><b>*</b></span></label>
+                                    <input type="text" name="txtNome" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label>Login <span style="color: #ff0000;"><b>*</b></span></label>
+                                    <input type="text" class="form-control" name="txtLogin" required>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label>Password <span style="color: #ff0000;"><b>*</b></span> </label>
+                                    <input type="password" name="txtSenha" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label>E-mail <span style="color: #ff0000;"><b>*</b></span></label>
+                                    <input type="email" name="txtEmail" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label>Permission <span style="color: #ff0000;"><b>*</b></span></label>
+                                    <select class="form-control select2" style="width: 100%;" name="txtPermissao" required>
+                                        @foreach (var item in (List<SelectListItem>)ViewData["ListaPermissao"])
+                                        {
+                                            <option value="@item.Value" selected="@item.Selected">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label>Enable <span style="color: #ff0000;"><b>*</b></span></label>
+                                    <select class="form-control select2" style="width: 100%;" name="txtAtivo" required>
+                                        @foreach (var item in (List<SelectListItem>)ViewData["ListaAtivo"])
+                                        {
+                                            <option value="@item.Value" selected="@item.Selected">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" id="btnCancelar" name="btnCancelar" class="btn btn-flat btn-default" onclick="history.go(-1)">Cancelar</button>
+                            <button type="submit" id="btnCadastrar" class="btn btn-flat btn-primary">Cadastrar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="@Href("~/Content/js/select2.full.min.js")"></script>
+<script src="@Href("~/Content/js/jquery.inputmask.js")"></script>
+<script src="@Href("~/Content/js/jquery.inputmask.date.extensions.js")"></script>
+<script src="@Href("~/Content/js/jquery.inputmask.extensions.js")"></script>
+<script src="@Href("~/Content/js/bootstrap-timepicker.min.js")"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        //Datemask dd/mm/aaaa
+        $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/aaaa" });
+        //Money Euro
+        $("[data-mask]").inputmask();
+    });
+</script>
